@@ -88,3 +88,21 @@ git push origin 2_Crear_Tablas_Modelos
 ->Click en boton Merge pull request
 
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+->RouteServiceProvider
+->View/Components/ -> Layouts
+->resources/Views/Layouts
+->routes
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+git checkout -b 3_Ruta_Administrador_Web
+git branch
+git status
+
+git add .
+git commit -m "Se creo las Ruta Administrador y Web, y en las demás carpetas."
+git push origin 3_Ruta_Administrador_Web
+->Click en boton Merge pull request
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
