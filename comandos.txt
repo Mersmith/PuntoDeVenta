@@ -42,3 +42,49 @@ git push origin 1_Instalacion_Jetstream_Livewire
 ->Click en boton Merge pull request
 
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+->Crear Tablas
+->Modelo y Migración Categoria
+php artisan make:model Categoria -m
+
+->Modelo y Migración Proveedor
+php artisan make:model Proveedor -m
+
+->Modelo y Migración Producto
+php artisan make:model Producto -m
+
+->Modelo y Migración Imagen
+php artisan make:model Imagen -m
+
+->Modelo y Migración Cliente
+php artisan make:model Cliente -m
+
+->Modelo y Migración Cliente
+php artisan make:model Cliente -m
+
+->Modelo y Migración Orden
+php artisan make:model Orden -m
+
+->Modelo y Migración OrdenDetalle
+php artisan make:model OrdenDetalle -m
+
+->Modelo y Migración Venta
+php artisan make:model Venta -m
+
+->Modelo y Migración VentaDetalle
+php artisan make:model VentaDetalle -m
+
+php artisan migrate
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+git checkout -b 2_Crear_Tablas_Modelos
+git branch
+git status
+
+git add .
+git commit -m "Crear tablas y modelos de las principales migraciones."
+git push origin 2_Crear_Tablas_Modelos
+->Click en boton Merge pull request
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
