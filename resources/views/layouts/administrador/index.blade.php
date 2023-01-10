@@ -21,9 +21,6 @@
     <x-jet-banner />
 
     <div class="min-h-screen">
-        {{-- @livewire('navigation-menu') --}}
-
-        @livewire('administrador.menu.menu-principal')
 
         <!-- Contenido de páginas-->
         <main class="contenedor_layout_administrador">

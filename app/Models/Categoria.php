@@ -15,4 +15,9 @@ class Categoria extends Model
     {
         return $this->hasMany(Producto::class);
     }
+    
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 }

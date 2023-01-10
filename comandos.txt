@@ -106,3 +106,17 @@ git push origin 3_Ruta_Administrador_Web
 ->Click en boton Merge pull request
 
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+->CRUD CATEGORIA
+php artisan make:livewire Administrador/Categoria/CategoriaLivewire
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+git checkout -b 4_Crud_Categoria
+git branch
+git status
+
+git add .
+git commit -m "Crud Categoria"
+git push origin 4_Crud_Categoria
+->Click en boton Merge pull request
