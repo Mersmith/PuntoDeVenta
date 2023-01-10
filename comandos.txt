@@ -1,0 +1,18 @@
+**************************25/10/22***************************************
+
+PS C:\xampp\htdocs>composer create-project laravel/laravel PuntoDeVenta
+PS C:\xampp\htdocs>cd PuntoDeVenta
+PS C:\xampp\htdocs>code .
+
+->Crear comandos.txt
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+git init
+git add .
+git commit -m "1-Instalación Laravel"
+git log
+git remote add origin https://github.com/Mersmith/PuntoDeVenta.git
+git push origin master
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
