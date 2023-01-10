@@ -16,3 +16,29 @@ git remote add origin https://github.com/Mersmith/PuntoDeVenta.git
 git push origin master
 
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+php artisan serve
+composer require laravel/jetstream
+php artisan jetstream:install livewire
+npm install
+npm run dev
+
+->Configurar el .env con la base de datos mysql = puntodeventadb.
+->Crear la base de datos en phpmyadmin.
+
+php artisan migrate
+
+*****************************************************************
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+git checkout -b 1_Instalacion_Jetstream_Livewire
+git branch
+git status
+
+git add .
+git commit -m "Instalación de Jetstream y Livewire"
+git push origin 1_Instalacion_Jetstream_Livewire
+->Click en boton Merge pull request
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
