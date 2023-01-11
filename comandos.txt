@@ -120,3 +120,21 @@ git add .
 git commit -m "Crud Categoria"
 git push origin 4_Crud_Categoria
 ->Click en boton Merge pull request
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+->CRUD PROVEEDORES
+php artisan make:livewire Administrador/Proveedor/ProveedorLivewire
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+git checkout -b 5_Crud_Proveedor
+git branch
+git status
+
+git add .
+git commit -m "Crud Proveedor"
+git push origin 5_Crud_Proveedor
+->Click en boton Merge pull request
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
