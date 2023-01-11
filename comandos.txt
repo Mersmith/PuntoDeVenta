@@ -138,3 +138,36 @@ git push origin 5_Crud_Proveedor
 ->Click en boton Merge pull request
 
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+php artisan make:livewire Administrador/Producto/ProductoTodoLivewire
+php artisan make:livewire Administrador/Producto/ProductoCrearLivewire
+php artisan make:livewire Administrador/Producto/ProductoEditarLivewire
+
+->Build de ckeditor5 configurado
+->Cambiar el cdn por el build
+->Crear ruta ckeditor5
+
+
+->Modelo, Migración y Controlador Ckeditor
+php artisan make:controller Administrador/Ckeditor5Controller
+php artisan make:model Ckeditor -m
+
+php artisan migrate
+
+->APP_URL=http://localhost:8000
+->FILESYSTEM_DISK=public
+->eliminar el storage de public
+php artisan storage:link
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+git checkout -b 6_Crear_Producto
+git branch
+git status
+
+git add .
+git commit -m "Crear producto, ckeditor5, cambiar de posición"
+git push origin 6_Crear_Producto
+->Click en boton Merge pull request
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

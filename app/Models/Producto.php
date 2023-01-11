@@ -29,6 +29,11 @@ class Producto extends Model
         return $this->morphMany(Imagen::class, "imagenable");
     }
 
+    public function ckeditors()
+    {
+        return $this->morphMany(Ckeditor::class, "ckeditorable");
+    }
+    
     public function getRouteKeyName()
     {
         return 'slug';
