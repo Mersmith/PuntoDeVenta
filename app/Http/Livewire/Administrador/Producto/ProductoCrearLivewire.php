@@ -155,6 +155,7 @@ class ProductoCrearLivewire extends Component
         $producto->sku = $this->sku;
         $producto->precio_venta = $this->precio_venta;
         $producto->precio_real = $this->precio_real;
+        $producto->stock_total = $this->stock_total;
         $producto->descripcion = $this->descripcion;
         $producto->informacion = $this->informacion;
         $producto->puntos_ganar = $this->puntos_ganar;
