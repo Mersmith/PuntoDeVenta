@@ -187,3 +187,25 @@ git push origin 7_Editar_Eliminar_Producto
 ->Click en boton Merge pull request
 
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+php artisan make:livewire Administrador/Cliente/ClienteTodoLivewire
+php artisan make:livewire Administrador/Cliente/ClienteCrearLivewire
+php artisan make:livewire Administrador/Cliente/ClienteEditarLivewire
+php artisan make:livewire Administrador/Cliente/ClienteEstadoLivewire
+
+->app/Actions/Fortify/CreateNewUser -> Comentar campo nombre
+
+php artisan migrate:fresh
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+git checkout -b 8_Crud_Cliente
+git branch
+git status
+
+git add .
+git commit -m "Crud cliente"
+git push origin 8_Crud_Cliente
+->Click en boton Merge pull request
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

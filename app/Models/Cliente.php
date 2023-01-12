@@ -17,7 +17,8 @@ class Cliente extends Model
         'ruc',
         'email',
         'celular',
-        'direccion'
+        'direccion',
+        'puntos'
     ];
 
     public function imagen()

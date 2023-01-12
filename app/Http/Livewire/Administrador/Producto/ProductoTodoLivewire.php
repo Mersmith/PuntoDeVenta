@@ -11,7 +11,6 @@ class ProductoTodoLivewire extends Component
     use WithPagination;
     public $buscarProducto;
     protected $paginate = 10;
-    protected $listeners = ['eliminarProducto'];
 
     public function updatingBuscarProducto()
     {
