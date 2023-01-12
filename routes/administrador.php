@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Administrador\Ckeditor5Controller;
+use App\Http\Controllers\Administrador\ProductoController;
 use App\Http\Livewire\Administrador\Categoria\CategoriaLivewire;
 use App\Http\Livewire\Administrador\Producto\ProductoCrearLivewire;
 use App\Http\Livewire\Administrador\Producto\ProductoEditarLivewire;
@@ -20,3 +21,4 @@ Route::get('productos', ProductoTodoLivewire::class)->name('producto.index');
 Route::get('producto/crear', ProductoCrearLivewire::class)->name('producto.crear');
 Route::get('producto/{producto}/editar', ProductoEditarLivewire::class)->name('producto.editar');
 Route::post('ckeditor-upload', [Ckeditor5Controller::class, 'upload'])->name('ckeditor.upload');
+Route::post('producto/{producto}/dropzone', [ProductoController::class, 'dropzone'])->name('producto.dropzone');

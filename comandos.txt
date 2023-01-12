@@ -171,3 +171,19 @@ git push origin 6_Crear_Producto
 ->Click en boton Merge pull request
 
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+php artisan make:livewire Administrador/Producto/ProductoEstadoLivewire
+php artisan make:controller Administrador/ProductoController
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+git checkout -b 7_Editar_Eliminar_Producto
+git branch
+git status
+
+git add .
+git commit -m "Editar y eliminar producto, ckeditor5, cambiar de posición"
+git push origin 7_Editar_Eliminar_Producto
+->Click en boton Merge pull request
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
