@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Administrador\Ckeditor5Controller;
+use App\Http\Controllers\Administrador\CompraController;
 use App\Http\Controllers\Administrador\ProductoController;
 use App\Http\Livewire\Administrador\Categoria\CategoriaLivewire;
 use App\Http\Livewire\Administrador\Cliente\ClienteCrearLivewire;
@@ -36,5 +37,6 @@ Route::get('cliente/{cliente}/editar', ClienteEditarLivewire::class)->name('clie
 Route::get('compras', CompraTodoLivewire::class)->name('compra.index');
 Route::get('compra/crear', CompraCrearLivewire::class)->name('compra.crear');
 Route::get('compra/{compra}/editar', CompraEditarLivewire::class)->name('compra.editar');
+Route::get('compra/{compra}/pdf',  [CompraController::class, 'pdfCompra'])->name('compra.pdf');
 
 

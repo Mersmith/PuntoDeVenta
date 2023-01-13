@@ -1,26 +1,21 @@
-<div>
-    <!--SEO-->
-    @section('tituloPagina', 'EDITAR COMPRA')
+<!DOCTYPE html>
+<html lang="en">
 
-    <!--TITULO-->
-    <h1>EDITAR COMPRA</h1>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{{ $titulo }}</title>
+</head>
 
-    <!--BOTONES-->
-    <a href="{{ route('administrador.compra.index') }}">
-        <i class="fa-solid fa-arrow-left-long"></i> Regresar</a>
-    <button wire:click="$emit('eliminarCompraModal')">
-        Eliminar compra
-    </button>
-    <a href="{{ route('administrador.compra.crear') }}">Crear Nuevo Compra</a>
+<body>
+    <h1>{{ $titulo }}</h1>
+    <p>Fecha descarga: {{ $fecha_descarga }}</p>
+    <p>Factura emitida por Smith</p>
 
     <hr>
 
-    <a href="{{ route('administrador.compra.pdf', $compra) }}">Descargar PDF</a>
-   
-    <hr>
-
-    <!--FORMULARIO-->
-    <div x-data>
+    <div>
         <!--FECHA-->
         <div>
             <p>Fecha: </p>
@@ -73,31 +68,30 @@
         <!--PROVEEDOR-->
         <div>
             <p>Proveedor: </p>
-            <input type="text" wire:model="proveedor" disabled>
+            <input type="text" value="{{ $proveedor }}" disabled>
         </div>
 
         <!--PERSONAL-->
         <div>
             <p>Personal: </p>
-            <input type="text" wire:model="personal" disabled>
+            <input type="text" value="{{ $personal }}" disabled>
         </div>
 
         <!--IMPUESTO-->
         <div>
             <p>Impuesto (%): </p>
-            <input type="text" wire:model="impuesto" disabled>
+            <input type="text" value="{{ $impuesto }}" disabled>
         </div>
 
         <!--TOTAL-->
         <div>
             <p>Total: </p>
-            <input type="text" wire:model="total" disabled>
+            <input type="text" value="{{ $total }}" disabled>
         </div>
 
         <br>
         <hr>
         <br>
-
         @if (count($detalle_compra) > 0)
             <!--SUBTITULO-->
             <h2>Detalle:</h2>
@@ -105,8 +99,6 @@
             <table>
                 <thead>
                     <tr>
-                        <th>
-                            Imagen</th>
                         <th>
                             Producto</th>
                         <th>
@@ -120,16 +112,6 @@
                 <tbody>
                     @foreach ($detalle_compra as $item)
                         <tr>
-                            <td>
-                                <div style="width: 20px; height: 20px;">
-                                    @if ($item->producto->imagenes->count())
-                                        <img src="{{ Storage::url($item->producto->imagenes->first()->imagen_ruta) }}"
-                                            alt="" />
-                                    @else
-                                        <img src="{{ asset('imagenes/producto/sin_foto_producto.png') }}">
-                                    @endif
-                                </div>
-                            </td>
                             <td>
                                 {{ $item->producto->nombre }}
                             </td>
@@ -160,6 +142,8 @@
             <p>No hay detalle de compra.</p>
         @endif
 
-    </div>
 
-</div>
+    </div>
+</body>
+
+</html>
