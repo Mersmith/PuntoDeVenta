@@ -5,15 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class OrdenDetalle extends Model
+class CompraDetalle extends Model
 {
     use HasFactory;
 
     protected $guarded = ['id', 'created_at', 'updated_at', 'estado'];
 
-    public function orden()
+    public function compra()
     {
-        return $this->belongsTo(Orden::class);
+        return $this->belongsTo(Compra::class);
     }
 
     public function producto()

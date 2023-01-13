@@ -13,17 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('orden_detalles', function (Blueprint $table) {
+        Schema::create('compra_detalles', function (Blueprint $table) {
             $table->id();          
 
             $table->integer('cantidad');
             $table->float('precio');
             $table->json('contenido')->nullable();            
 
-            $table->unsignedBigInteger('orden_id');
+            $table->unsignedBigInteger('compra_id');
             $table->unsignedBigInteger('producto_id');
 
-            $table->foreign('orden_id')->references('id')->on('ordens');
+            $table->foreign('compra_id')->references('id')->on('compras');
             $table->foreign('producto_id')->references('id')->on('productos');
 
             $table->timestamps();
@@ -37,6 +37,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('orden_detalles');
+        Schema::dropIfExists('compra_detalles');
     }
 };
