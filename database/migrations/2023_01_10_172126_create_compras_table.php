@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use App\Models\Orden;
+use App\Models\Compra;
 
 return new class extends Migration
 {
@@ -14,19 +14,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('ordens', function (Blueprint $table) {
+        Schema::create('compras', function (Blueprint $table) {
             $table->id();
 
-            $table->enum('estado', [Orden::PENDIENTE, Orden::PAGADO, Orden::ORDENADO, Orden::ENVIADO, Orden::ENTREGADO, Orden::ANULADO])->default(Orden::PENDIENTE);
+            $table->enum('estado', [Compra::PENDIENTE, Compra::PAGADO, Compra::ORDENADO, Compra::ENVIADO, Compra::ENTREGADO, Compra::ANULADO])->default(Compra::PENDIENTE);
             $table->float('total');
             $table->float('impuesto');
-            $table->enum('tipo_envio', [1, 2]);
-            $table->json('envio')->nullable();
-            $table->float('costo_envio');
-            $table->string('puntos_canjeados')->nullable();
-            $table->string('cupon_descuento')->nullable();
-            $table->string('cupon_precio')->nullable();
-
+            
             $table->unsignedBigInteger('proveedor_id');
             $table->unsignedBigInteger('user_id');
 
@@ -44,6 +38,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ordens');
+        Schema::dropIfExists('compras');
     }
 };

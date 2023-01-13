@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use App\Models\Orden;
+use App\Models\Compra;
 
 return new class extends Migration
 {
@@ -17,7 +17,7 @@ return new class extends Migration
         Schema::create('ventas', function (Blueprint $table) {
             $table->id();
 
-            $table->enum('estado', [Orden::PENDIENTE, Orden::PAGADO, Orden::ORDENADO, Orden::ENVIADO, Orden::ENTREGADO, Orden::ANULADO])->default(Orden::PENDIENTE);
+            $table->enum('estado', [Compra::PENDIENTE, Compra::PAGADO, Compra::ORDENADO, Compra::ENVIADO, Compra::ENTREGADO, Compra::ANULADO])->default(Compra::PENDIENTE);
             $table->float('total');
             $table->float('impuesto');
             $table->enum('tipo_envio', [1, 2]);

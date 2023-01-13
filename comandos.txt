@@ -62,11 +62,11 @@ php artisan make:model Cliente -m
 ->Modelo y Migración Cliente
 php artisan make:model Cliente -m
 
-->Modelo y Migración Orden
-php artisan make:model Orden -m
+->Modelo y Migración Compra
+php artisan make:model Compra -m
 
-->Modelo y Migración OrdenDetalle
-php artisan make:model OrdenDetalle -m
+->Modelo y Migración CompraDetalle
+php artisan make:model CompraDetalle -m
 
 ->Modelo y Migración Venta
 php artisan make:model Venta -m
@@ -209,3 +209,24 @@ git push origin 8_Crud_Cliente
 ->Click en boton Merge pull request
 
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+**************************13/01/23***************************************
+
+->Compras al proveedor
+php artisan make:livewire Administrador/Compra/CompraTodoLivewire
+php artisan make:livewire Administrador/Compra/CompraCrearLivewire
+php artisan make:livewire Administrador/Compra/CompraEditarLivewire
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+git checkout -b 9_Crud_Compra
+git branch
+git status
+
+git add .
+git commit -m "Crud compra"
+git push origin 9_Crud_Compra
+->Click en boton Merge pull request
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+

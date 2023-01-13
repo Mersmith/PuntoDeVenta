@@ -6,6 +6,9 @@ use App\Http\Livewire\Administrador\Categoria\CategoriaLivewire;
 use App\Http\Livewire\Administrador\Cliente\ClienteCrearLivewire;
 use App\Http\Livewire\Administrador\Cliente\ClienteEditarLivewire;
 use App\Http\Livewire\Administrador\Cliente\ClienteTodoLivewire;
+use App\Http\Livewire\Administrador\Compra\CompraCrearLivewire;
+use App\Http\Livewire\Administrador\Compra\CompraEditarLivewire;
+use App\Http\Livewire\Administrador\Compra\CompraTodoLivewire;
 use App\Http\Livewire\Administrador\Producto\ProductoCrearLivewire;
 use App\Http\Livewire\Administrador\Producto\ProductoEditarLivewire;
 use App\Http\Livewire\Administrador\Producto\ProductoTodoLivewire;
@@ -29,4 +32,9 @@ Route::post('producto/{producto}/dropzone', [ProductoController::class, 'dropzon
 Route::get('clientes', ClienteTodoLivewire::class)->name('cliente.index');
 Route::get('cliente/crear', ClienteCrearLivewire::class)->name('cliente.crear');
 Route::get('cliente/{cliente}/editar', ClienteEditarLivewire::class)->name('cliente.editar');
+
+Route::get('compras', CompraTodoLivewire::class)->name('compra.index');
+Route::get('compra/crear', CompraCrearLivewire::class)->name('compra.crear');
+Route::get('compra/{compra}/editar', CompraEditarLivewire::class)->name('compra.editar');
+
 

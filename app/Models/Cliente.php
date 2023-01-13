@@ -26,8 +26,8 @@ class Cliente extends Model
         return $this->morphOne(Imagen::class, "imagenable");
     }
 
-    public function ordenes()
+    public function ventas()
     {
-        return $this->hasMany(Orden::class);
+        return $this->hasMany(Venta::class);
     }
 }

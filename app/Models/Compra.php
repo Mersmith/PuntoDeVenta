@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Orden extends Model
+class Compra extends Model
 {
     use HasFactory;
 
@@ -18,7 +18,7 @@ class Orden extends Model
     const ENTREGADO = 5;
     const ANULADO = 6;
 
-    public function usuario()
+    public function user()
     {
         return $this->belongsTo(User::class);
     }
@@ -28,8 +28,8 @@ class Orden extends Model
         return $this->belongsTo(Proveedor::class);
     }
 
-    public function ordenDetalle()
+    public function compraDetalle()
     {
-        return $this->hasMany(OrdenDetalle::class);
+        return $this->hasMany(CompraDetalle::class);
     }
 }
