@@ -51,6 +51,23 @@
                 <div class="mensaje_alerta">
                     <p>{{ session('eliminar') }}</p>
                     <i class="fa-solid fa-circle-check"></i>
+                    <script>
+                        window.onload = function() {
+                            mensajeEliminado();
+                        };
+                    </script>
+                </div>
+            @endif
+
+            @if (session('error'))
+                <div class="mensaje_alerta">
+                    <p>{{ session('error') }}</p>
+                    <i class="fa-solid fa-circle-check"></i>
+                    <script>
+                        window.onload = function() {
+                            mensajeError();
+                        };
+                    </script>
                 </div>
             @endif
             {{ $slot }}
@@ -114,6 +131,27 @@
             Swal.fire({
                 icon: 'success',
                 title: "Creado correctamente",
+                showConfirmButton: false,
+                timer: 2500
+            })
+        }
+
+        function mensajeEliminado() {
+            event.preventDefault();
+            Swal.fire({
+                icon: 'error',
+                title: "Eliminado correctamente",
+                showConfirmButton: false,
+                timer: 2500
+            })
+        }
+
+        function mensajeError() {
+            event.preventDefault();
+            Swal.fire({
+                icon: 'error',
+                title: '¡Alto!',
+                text: "Rebice bien.",
                 showConfirmButton: false,
                 timer: 2500
             })

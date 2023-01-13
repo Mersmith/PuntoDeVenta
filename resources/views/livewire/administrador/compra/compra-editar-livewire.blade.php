@@ -16,7 +16,8 @@
     <hr>
 
     <a href="{{ route('administrador.compra.pdf', $compra) }}">Descargar PDF</a>
-   
+    <a href="{{ route('administrador.compra.imprimir', $compra) }}">Imprimir</a>
+
     <hr>
 
     <!--FORMULARIO-->
