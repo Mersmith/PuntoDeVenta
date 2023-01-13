@@ -230,3 +230,21 @@ git push origin 9_Crud_Compra
 
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+->PDF 
+composer require barryvdh/laravel-dompdf
+
+php artisan make:controller Administrador/CompraController
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+git checkout -b 10_PDF_Compra
+git branch
+git status
+
+git add .
+git commit -m "Pdf Compra"
+git push origin 10_PDF_Compra
+->Click en boton Merge pull request
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
