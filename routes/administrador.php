@@ -38,5 +38,6 @@ Route::get('compras', CompraTodoLivewire::class)->name('compra.index');
 Route::get('compra/crear', CompraCrearLivewire::class)->name('compra.crear');
 Route::get('compra/{compra}/editar', CompraEditarLivewire::class)->name('compra.editar');
 Route::get('compra/{compra}/pdf',  [CompraController::class, 'pdfCompra'])->name('compra.pdf');
+Route::get('compra/{compra}/imprimir',  [CompraController::class, 'imprimirCompra'])->name('compra.imprimir');
 
 

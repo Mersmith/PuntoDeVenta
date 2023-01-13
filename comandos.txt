@@ -248,3 +248,19 @@ git push origin 10_PDF_Compra
 ->Click en boton Merge pull request
 
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+->impresión
+composer require mike42/escpos-php
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+git checkout -b 11_Imprimir_Compra
+git branch
+git status
+
+git add .
+git commit -m "Imprimir Compra"
+git push origin 11_Imprimir_Compra
+->Click en boton Merge pull request
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
