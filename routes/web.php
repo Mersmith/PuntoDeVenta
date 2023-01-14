@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Administrador\ProductoController as AdministradorProductoController;
+use App\Http\Controllers\Web\ProductoController as WebProductoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,6 +22,11 @@ Route::get('prueba-web', function () {
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('producto/{producto}', [WebProductoController::class, 'mostrar'])->name('producto.index');
+
+Route::get('producto/{producto}/qr', [AdministradorProductoController::class, 'redirigirQr'])->name('producto.redirigir.qr');
+
 /*
 Route::middleware([
     'auth:sanctum',

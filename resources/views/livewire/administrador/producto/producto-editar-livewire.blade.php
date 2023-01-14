@@ -13,6 +13,20 @@
     </button>
     <a href="{{ route('administrador.producto.crear') }}">Crear Nuevo Producto</a>
 
+    <div>
+        <a href="{{ route('producto.index', $producto->slug) }}" target="_blank">
+            Ver producto</a>
+
+        <a href="{{ route('producto.redirigir.qr', $producto->slug) }}" target="_blank">
+            Redirigir por QR</a>
+
+        <p>QR</p>
+        {!! QrCode::size(200)->generate(route('producto.redirigir.qr', $producto->slug)) !!}
+        <button wire:click="descargarQR">
+            Descargar QR
+        </button>
+    </div>
+
     <!--FORMULARIO-->
     <div x-data>
         <!--PROVEEDOR-->

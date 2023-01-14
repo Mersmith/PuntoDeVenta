@@ -22,4 +22,9 @@ class ProductoController extends Controller
             'posicion' => $producto->imagenes()->count() + 1,
         ]);
     }
+
+    public function redirigirQr(Producto $producto)
+    {
+        return redirect()->route('producto.index', $producto->slug);
+    }
 }

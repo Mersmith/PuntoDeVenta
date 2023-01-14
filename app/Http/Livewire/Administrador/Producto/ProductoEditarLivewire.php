@@ -10,6 +10,7 @@ use Livewire\Component;
 use Illuminate\Support\Str;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Storage;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class ProductoEditarLivewire extends Component
 {
@@ -223,6 +224,15 @@ class ProductoEditarLivewire extends Component
         $this->producto->delete();
 
         return redirect()->route('administrador.producto.index');
+    }
+
+    public function descargarQR(){
+
+        $qr_codigo = QrCode::size(100)->generate(route('producto.redirigir.qr', $this->producto->slug));
+
+        Storage::put('qrs/producto/'.$this->producto->slug.'.svg', $qr_codigo);
+
+        return Storage::download('qrs/producto/'.$this->producto->slug.'.svg');
     }
 
     public function render()

@@ -25,7 +25,7 @@
 
     <!-- Styles -->
     @livewireStyles
-    @include('layouts.frontend.componentes.css')
+    @include('layouts.web.componentes.css')
 </head>
 
 <body class="font-sans antialiased">
@@ -41,7 +41,7 @@
 
     </div>
 
-    @include('layouts.frontend.componentes.js')
+    @include('layouts.web.componentes.js')
     @stack('modals')
     @livewireScripts
     @stack('script')

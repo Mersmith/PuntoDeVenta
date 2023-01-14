@@ -315,13 +315,33 @@ php artisan make:livewire Administrador/Estadistica/EstadisticaLivewire
 
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-git checkout -b 13_Estadistica
+git checkout -b 14_Estadistica
 git branch
 git status
 
 git add .
 git commit -m "Estadistica"
-git push origin 13_Estadistica
+git push origin 14_Estadistica
+->Click en boton Merge pull request
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+->C:\xampp\php\php.ini
+->extension=gd retirar el ;
+
+composer require simplesoftwareio/simple-qrcode
+
+php artisan make:controller Web/ProductoController
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+git checkout -b 15_Producto_QR
+git branch
+git status
+
+git add .
+git commit -m "Qr para producto y vista del producto."
+git push origin 15_Producto_QR
 ->Click en boton Merge pull request
 
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
