@@ -16,6 +16,8 @@ use App\Http\Livewire\Administrador\Producto\ProductoCrearLivewire;
 use App\Http\Livewire\Administrador\Producto\ProductoEditarLivewire;
 use App\Http\Livewire\Administrador\Producto\ProductoTodoLivewire;
 use App\Http\Livewire\Administrador\Proveedor\ProveedorLivewire;
+use App\Http\Livewire\Administrador\Reporte\CompraDiaLivewire;
+use App\Http\Livewire\Administrador\Reporte\CompraFechaLivewire;
 use Illuminate\Support\Facades\Route;
 
 Route::get('prueba-administrador', function () {
@@ -45,5 +47,7 @@ Route::get('compra/{compra}/imprimir',  [CompraController::class, 'imprimirCompr
 Route::get('empresa', EmpresaLivewire::class)->name('empresa.index');
 Route::get('impresoras', ImpresoraLivewire::class)->name('impresora.index');
 
+Route::get('reportes/dia', CompraDiaLivewire::class)->name('reporte.dia');
+Route::get('reportes/fechas', CompraFechaLivewire::class)->name('reporte.fecha');
 
 

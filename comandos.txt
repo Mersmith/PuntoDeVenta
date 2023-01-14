@@ -288,3 +288,23 @@ git push origin 12_Crud_Empresa_Impresora
 ->Click en boton Merge pull request
 
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+**************************14/01/23***************************************
+
+->Reporte dia y rango fecha compra
+
+php artisan make:livewire Administrador/Reporte/CompraDiaLivewire
+php artisan make:livewire Administrador/Reporte/CompraFechaLivewire
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+git checkout -b 13_Reporte_Dia_Fecha
+git branch
+git status
+
+git add .
+git commit -m "Reporte de día y fecha."
+git push origin 13_Reporte_Dia_Fecha
+->Click en boton Merge pull request
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
