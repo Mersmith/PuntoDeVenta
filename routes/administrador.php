@@ -11,6 +11,7 @@ use App\Http\Livewire\Administrador\Compra\CompraCrearLivewire;
 use App\Http\Livewire\Administrador\Compra\CompraEditarLivewire;
 use App\Http\Livewire\Administrador\Compra\CompraTodoLivewire;
 use App\Http\Livewire\Administrador\Empresa\EmpresaLivewire;
+use App\Http\Livewire\Administrador\Estadistica\EstadisticaLivewire;
 use App\Http\Livewire\Administrador\Impresora\ImpresoraLivewire;
 use App\Http\Livewire\Administrador\Producto\ProductoCrearLivewire;
 use App\Http\Livewire\Administrador\Producto\ProductoEditarLivewire;
@@ -50,4 +51,5 @@ Route::get('impresoras', ImpresoraLivewire::class)->name('impresora.index');
 Route::get('reportes/dia', CompraDiaLivewire::class)->name('reporte.dia');
 Route::get('reportes/fechas', CompraFechaLivewire::class)->name('reporte.fecha');
 
+Route::get('estadistica', EstadisticaLivewire::class)->name('estadistica.index');
 
