@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('apellido')->nullable();
             $table->string('dni')->nullable()->unique();
             $table->string('ruc')->nullable()->unique();
-            $table->string('email')->unique()->unique();;
+            $table->string('email')->unique();
             $table->string('celular')->nullable();
             $table->string('direccion')->nullable();
             $table->integer('puntos')->nullable()->default(0);

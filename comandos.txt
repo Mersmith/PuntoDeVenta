@@ -264,3 +264,27 @@ git push origin 11_Imprimir_Compra
 ->Click en boton Merge pull request
 
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+->Modelo y Migración Empresa
+php artisan make:model Empresa -m
+
+->Modelo y Migración Impresora
+php artisan make:model Impresora -m
+
+php artisan make:livewire Administrador/Empresa/EmpresaLivewire
+php artisan make:livewire Administrador/Impresora/ImpresoraLivewire
+
+php artisan migrate:rollback
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+git checkout -b 12_Crud_Empresa_Impresora
+git branch
+git status
+
+git add .
+git commit -m "Crud de empresa e Impresora."
+git push origin 12_Crud_Empresa_Impresora
+->Click en boton Merge pull request
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
