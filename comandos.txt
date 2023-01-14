@@ -308,3 +308,20 @@ git push origin 13_Reporte_Dia_Fecha
 ->Click en boton Merge pull request
 
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+->Estadística
+
+php artisan make:livewire Administrador/Estadistica/EstadisticaLivewire
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+git checkout -b 13_Estadistica
+git branch
+git status
+
+git add .
+git commit -m "Estadistica"
+git push origin 13_Estadistica
+->Click en boton Merge pull request
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
