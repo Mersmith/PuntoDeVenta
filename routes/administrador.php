@@ -10,6 +10,8 @@ use App\Http\Livewire\Administrador\Cliente\ClienteTodoLivewire;
 use App\Http\Livewire\Administrador\Compra\CompraCrearLivewire;
 use App\Http\Livewire\Administrador\Compra\CompraEditarLivewire;
 use App\Http\Livewire\Administrador\Compra\CompraTodoLivewire;
+use App\Http\Livewire\Administrador\Empresa\EmpresaLivewire;
+use App\Http\Livewire\Administrador\Impresora\ImpresoraLivewire;
 use App\Http\Livewire\Administrador\Producto\ProductoCrearLivewire;
 use App\Http\Livewire\Administrador\Producto\ProductoEditarLivewire;
 use App\Http\Livewire\Administrador\Producto\ProductoTodoLivewire;
@@ -39,5 +41,9 @@ Route::get('compra/crear', CompraCrearLivewire::class)->name('compra.crear');
 Route::get('compra/{compra}/editar', CompraEditarLivewire::class)->name('compra.editar');
 Route::get('compra/{compra}/pdf',  [CompraController::class, 'pdfCompra'])->name('compra.pdf');
 Route::get('compra/{compra}/imprimir',  [CompraController::class, 'imprimirCompra'])->name('compra.imprimir');
+
+Route::get('empresa', EmpresaLivewire::class)->name('empresa.index');
+Route::get('impresoras', ImpresoraLivewire::class)->name('impresora.index');
+
 
 
