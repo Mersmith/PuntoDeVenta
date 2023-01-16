@@ -326,6 +326,7 @@ git push origin 14_Estadistica
 
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+->Codigo de Qr
 ->C:\xampp\php\php.ini
 ->extension=gd retirar el ;
 
@@ -342,6 +343,24 @@ git status
 git add .
 git commit -m "Qr para producto y vista del producto."
 git push origin 15_Producto_QR
+->Click en boton Merge pull request
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+**************************16/01/23***************************************
+
+->Codigo de barras
+composer require milon/barcode
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+git checkout -b 16_Producto_Codigo_Barra
+git branch
+git status
+
+git add .
+git commit -m "Codigo de barra para producto y vista del producto."
+git push origin 16_Producto_Codigo_Barra
 ->Click en boton Merge pull request
 
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
