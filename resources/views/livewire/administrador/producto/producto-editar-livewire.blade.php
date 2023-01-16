@@ -14,6 +14,15 @@
     <a href="{{ route('administrador.producto.crear') }}">Crear Nuevo Producto</a>
 
     <div>
+        <p>Codigo de barras</p>
+        {!! DNS1D::getBarcodeSVG($producto->sku, 'C128', 2, 45, true) !!}
+        {{--<img src="data:image/png;base64,{{ DNS1D::getBarcodePNG($producto->sku, 'C128', 2, 33) }}" alt="">--}}
+
+        <a download="{{ $this->producto->sku . '.png' }}"
+            href="data:image/png;base64,{{ DNS1D::getBarcodePNG($producto->sku, 'C128', 2, 33) }}">Descargar Codigo de Barra</a>
+    </div>
+    <hr>
+    <div>
         <a href="{{ route('producto.index', $producto->slug) }}" target="_blank">
             Ver producto</a>
 

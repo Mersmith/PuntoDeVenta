@@ -14,6 +14,7 @@
         "laravel/tinker": "^2.7",
         "livewire/livewire": "^2.5",
         "mike42/escpos-php": "^2.2",
+        "milon/barcode": "^9.0",
         "simplesoftwareio/simple-qrcode": "^4.2"
     },
     "require-dev": {

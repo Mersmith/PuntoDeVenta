@@ -326,6 +326,7 @@ git push origin 14_Estadistica
 
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+->Codigo de Qr
 ->C:\xampp\php\php.ini
 ->extension=gd retirar el ;
 
@@ -342,6 +343,46 @@ git status
 git add .
 git commit -m "Qr para producto y vista del producto."
 git push origin 15_Producto_QR
+->Click en boton Merge pull request
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+**************************16/01/23***************************************
+
+->Codigo de barras
+composer require milon/barcode
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+git checkout -b 16_Producto_Codigo_Barra
+git branch
+git status
+
+git add .
+git commit -m "Codigo de barra para producto y vista del producto."
+git push origin 16_Producto_Codigo_Barra
+->Click en boton Merge pull request
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+->Layout Cliente
+->Perfil Cliente y Administrador
+
+php artisan make:livewire Cliente/Perfil/PerfilLivewire
+php artisan make:livewire Administrador/Perfil/PerfilLivewire
+
+->Modelo y Migración Administrador
+php artisan make:model Administrador -m
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+git checkout -b 17_Perfil_Cliente_Administrador
+git branch
+git status
+
+git add .
+git commit -m "Perfil Cliente y Administrador."
+git push origin 17_Perfil_Cliente_Administrador
 ->Click en boton Merge pull request
 
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

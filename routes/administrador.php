@@ -13,6 +13,7 @@ use App\Http\Livewire\Administrador\Compra\CompraTodoLivewire;
 use App\Http\Livewire\Administrador\Empresa\EmpresaLivewire;
 use App\Http\Livewire\Administrador\Estadistica\EstadisticaLivewire;
 use App\Http\Livewire\Administrador\Impresora\ImpresoraLivewire;
+use App\Http\Livewire\Administrador\Perfil\PerfilLivewire;
 use App\Http\Livewire\Administrador\Producto\ProductoCrearLivewire;
 use App\Http\Livewire\Administrador\Producto\ProductoEditarLivewire;
 use App\Http\Livewire\Administrador\Producto\ProductoTodoLivewire;
@@ -24,6 +25,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('prueba-administrador', function () {
     return "Amdministrador";
 });
+
+Route::get('perfil', PerfilLivewire::class)->name('perfil');
 
 Route::get('categorias', CategoriaLivewire::class)->name('categoria.index');
 

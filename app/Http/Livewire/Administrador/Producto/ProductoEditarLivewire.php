@@ -137,7 +137,7 @@ class ProductoEditarLivewire extends Component
     public function editarProducto()
     {
         if ($this->producto->imagenes->count()) {
-            
+
             $rules = $this->rules;
             $rules['slug'] = 'required|unique:productos,slug,' . $this->producto->id;
             $rules['sku'] = 'required|unique:productos,sku,' . $this->producto->id;
@@ -187,7 +187,6 @@ class ProductoEditarLivewire extends Component
                 }
             }
             $this->emit('mensajeActualizado', "El producto ha sido actualizado.");
-            
         } else {
             $this->emit('mensajeError', "Falta subir imagen.");
         }
@@ -226,14 +225,14 @@ class ProductoEditarLivewire extends Component
         return redirect()->route('administrador.producto.index');
     }
 
-    public function descargarQR(){
-
+    public function descargarQR()
+    {
         $qr_codigo = QrCode::size(100)->generate(route('producto.redirigir.qr', $this->producto->slug));
 
-        Storage::put('qrs/producto/'.$this->producto->slug.'.svg', $qr_codigo);
+        Storage::put('qrs/producto/' . $this->producto->slug . '.svg', $qr_codigo);
 
-        return Storage::download('qrs/producto/'.$this->producto->slug.'.svg');
-    }
+        return Storage::download('qrs/producto/' . $this->producto->slug . '.svg');
+    } 
 
     public function render()
     {
