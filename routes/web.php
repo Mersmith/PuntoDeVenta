@@ -27,7 +27,7 @@ Route::get('producto/{producto}', [WebProductoController::class, 'mostrar'])->na
 
 Route::get('producto/{producto}/qr', [AdministradorProductoController::class, 'redirigirQr'])->name('producto.redirigir.qr');
 
-/*
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -36,4 +36,4 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
-});*/
+});
