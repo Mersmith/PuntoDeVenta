@@ -14,9 +14,19 @@ class Producto extends Model
     const DESACTIVADO = 0;
     const ACTIVADO = 1;
 
-    public function categoria()
+    public function subcategoria()
     {
-        return $this->belongsTo(Categoria::class);
+        return $this->belongsTo(Subcategoria::class);
+    }
+
+    public function marca()
+    {
+        return $this->belongsTo(Marca::class);
+    }
+
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
     }
 
     public function proveedor()

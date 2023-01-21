@@ -1,61 +1,50 @@
 <?php
 
-namespace App\Http\Livewire\Administrador\Categoria;
+namespace App\Http\Livewire\Administrador\Marca;
 
-use App\Models\Categoria;
-use App\Models\Marca;
-use Illuminate\Support\Facades\Storage;
+use App\Models\Imagen;
 use Livewire\Component;
-use Illuminate\Support\Str;
+use App\Models\Marca;
 use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
-class CategoriaLivewire extends Component
+class MarcaLivewire extends Component
 {
     use WithFileUploads;
 
-    public $categorias, $categoria;
-
-    public $marcas;
+    public $marcas, $marca;
 
     public $imagen = null, $editarImagen = null;
 
-    protected $listeners = ['eliminarCategoria'];
+    protected $listeners = ['eliminarMarca'];
 
     public $crearFormulario = [
         'nombre' => null,
         'slug' => null,
-        'icono' => null,
         'descripcion' => null,
-        'marcas' => [],
     ];
 
     public $editarFormulario = [
         'abierto' => false,
         'nombre' => null,
         'slug' => null,
-        'icono' => null,
         'descripcion' => null,
-        'marcas' => [],
     ];
 
-    protected $rules = [
-        'crearFormulario.nombre' => 'required|unique:categorias,nombre',
-        'crearFormulario.slug' => 'required|unique:categorias,slug',
-        'crearFormulario.marcas' => 'required',
+    public $rules = [
+        'crearFormulario.nombre' => 'required|unique:marcas,nombre',
+        'crearFormulario.slug' => 'required|unique:marcas,slug',
     ];
 
     protected $validationAttributes = [
         'crearFormulario.nombre' => 'nombre',
         'crearFormulario.slug' => 'slug',
-        'crearFormulario.icono' => 'icono',
         'crearFormulario.descripcion' => 'descripción',
-        'crearFormulario.marcas' => 'marcas de categoria',
 
         'editarFormulario.nombre' => 'nombre',
         'editarFormulario.slug' => 'slug',
-        'editarFormulario.icono' => 'icono',
         'editarFormulario.descripcion' => 'descripción',
-        'editarFormulario.marcas' => 'marcas de categoria',
     ];
 
     protected $messages = [
@@ -63,23 +52,19 @@ class CategoriaLivewire extends Component
         'crearFormulario.nombre.unique' => 'El :attribute ya existe.',
         'crearFormulario.slug.required' => 'El :attribute es requerido.',
         'crearFormulario.slug.unique' => 'El :attribute ya existe.',
-        'crearFormulario.icono.required' => 'El :attribute es requerido.',
         'crearFormulario.descripcion.required' => 'La :attribute es requerido.',
-        'crearFormulario.marcas.required' => 'La :attribute es requerido.',
 
         'editarFormulario.nombre.required' => 'El :attribute es requerido.',
         'editarFormulario.nombre.unique' => 'El :attribute ya existe.',
         'editarFormulario.slug.required' => 'El :attribute es requerido.',
         'editarFormulario.slug.unique' => 'El :attribute ya existe.',
-        'editarFormulario.icono.required' => 'El :attribute es requerido.',
         'editarFormulario.descripcion.required' => 'La :attribute es requerido.',
-        'editarFormulario.marcas.required' => 'La :attribute es requerido.',
-    ];
 
-    public function traerCategorias()
-    {
-        $this->categorias = Categoria::all();
-    }
+        'imagen.required' => 'La :attribute es requerido.',
+        'imagen.image' => 'La :attribute debe ser jpg o png.',
+        'imagen.max' => 'La :attribute no debe ser mayor de 1024kb',
+
+    ];
 
     public function traerMarcas()
     {
@@ -88,7 +73,6 @@ class CategoriaLivewire extends Component
 
     public function mount()
     {
-        $this->traerCategorias();
         $this->traerMarcas();
     }
 
@@ -102,7 +86,7 @@ class CategoriaLivewire extends Component
         $this->editarFormulario['slug'] = Str::slug($value);
     }
 
-    public function crearCategoria()
+    public function crearMarca()
     {
         $rules = $this->rules;
 
@@ -112,48 +96,44 @@ class CategoriaLivewire extends Component
 
         if ($this->imagen) {
             $rules['imagen'] = 'required|image|max:1024';
-            $imagenSubir = $this->imagen->store('categorias');
+            $imagenSubir = $this->imagen->store('marcas');
         }
 
         $this->validate($rules);
 
-        $categoriaNuevo = Categoria::create($this->crearFormulario);
-
-        $categoriaNuevo->marcas()->attach($this->crearFormulario['marcas']);
+        $marcaNuevo = Marca::create($this->crearFormulario);
 
         if ($this->imagen) {
-            $categoriaNuevo->imagen()->create([
+            $marcaNuevo->imagen()->create([
                 'imagen_ruta' => $imagenSubir
             ]);
         }
 
-        $this->traerCategorias();
+        $this->traerMarcas();
 
         $this->emit('mensajeCreado', "Creado.");
         $this->reset('crearFormulario', 'imagen');
     }
 
-    public function editarCategoria(Categoria $categoria)
+
+    public function editarMarca(Marca $marca)
     {
         $this->resetValidation();
 
-        $this->categoria = $categoria;
+        $this->marca = $marca;
 
         $this->editarFormulario['abierto'] = true;
-        $this->editarFormulario['nombre'] = $categoria->nombre;
-        $this->editarFormulario['slug'] = $categoria->slug;
-        $this->editarFormulario['icono'] = $categoria->icono;
-        $this->editarFormulario['descripcion'] = $categoria->descripcion;
-        $this->editarFormulario['marcas'] = $categoria->marcas->pluck('id');
-        $this->imagen = $categoria->imagen ? $categoria->imagen->imagen_ruta : null;
+        $this->editarFormulario['nombre'] = $marca->nombre;
+        $this->editarFormulario['slug'] = $marca->slug;
+        $this->editarFormulario['descripcion'] = $marca->descripcion;
+        $this->imagen = $marca->imagen ? $marca->imagen->imagen_ruta : null;
     }
 
-    public function actualizarCategoria()
+    public function actualizarMarca()
     {
         $rules = [
-            'editarFormulario.nombre' => 'required|unique:categorias,nombre,' . $this->categoria->id,
-            'editarFormulario.slug' => 'required|unique:categorias,slug,' . $this->categoria->id,
-            'editarFormulario.marcas' => 'required',
+            'editarFormulario.nombre' => 'required|unique:marcas,nombre,' . $this->marca->id,
+            'editarFormulario.slug' => 'required|unique:marcas,slug,' . $this->marca->id,
         ];
 
         if ($this->editarFormulario['descripcion']) {
@@ -164,57 +144,56 @@ class CategoriaLivewire extends Component
 
         if ($this->editarImagen) {
             $rules['editarImagen'] = 'required|image|max:1024';
-            $imagenSubir = $this->editarImagen->store('categorias');
+            $imagenSubir = $this->editarImagen->store('marcas');
         }
 
         $this->validate($rules);
 
-        $this->categoria->update($this->editarFormulario);
-        $this->categoria->marcas()->sync($this->editarFormulario['marcas']);
+        $this->marca->update($this->editarFormulario);
 
         if (!$this->imagen) {
-            if ($this->categoria->imagen) {
-                $imagenEliminar = $this->categoria->imagen;
-                Storage::delete([$this->categoria->imagen->imagen_ruta]);
+            if ($this->marca->imagen) {
+                $imagenEliminar = $this->marca->imagen;
+                Storage::delete([$this->marca->imagen->imagen_ruta]);
 
                 $imagenEliminar->delete();
             }
         }
 
         if ($this->editarImagen) {
-            if ($this->categoria->imagen) {
-                $imagenAntigua = $this->categoria->imagen;
-                Storage::delete([$this->categoria->imagen->imagen_ruta]);
+            if ($this->marca->imagen) {
+                $imagenAntigua = $this->marca->imagen;
+                Storage::delete([$this->marca->imagen->imagen_ruta]);
 
                 $imagenAntigua->delete();
             }
 
-            $this->categoria->imagen()->create([
+            $this->marca->imagen()->create([
                 'imagen_ruta' => $imagenSubir
             ]);
         }
 
-        $this->traerCategorias();
+        $this->traerMarcas();
         $this->reset('editarFormulario');
         $this->emit('mensajeActualizado', "Actualizado.");
     }
 
-    public function eliminarCategoria(Categoria $categoria)
+    public function eliminarMarca(Marca $marca)
     {
-        if ($categoria->imagen) {
-            $imagenEliminar = $categoria->imagen;
+        if ($marca->imagen) {
+            $imagenEliminar = $marca->imagen;
 
-            Storage::delete([$categoria->imagen->imagen_ruta]);
+            Storage::delete([$marca->imagen->imagen_ruta]);
             $imagenEliminar->delete();
         }
 
-        $categoria->delete();
-        $this->traerCategorias();
+        $marca->delete();
+        $this->traerMarcas();
         $this->emit('mensajeEliminado', "Eliminado.");
     }
 
     public function render()
     {
-        return view('livewire.administrador.categoria.categoria-livewire')->layout('layouts.administrador.index');
+        return view('livewire.administrador.marca.marca-livewire')->layout('layouts.administrador.index');
     }
 }
