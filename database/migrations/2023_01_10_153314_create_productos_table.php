@@ -32,10 +32,12 @@ return new class extends Migration
             $table->text('detalle')->nullable();
             $table->enum('estado', [Producto::DESACTIVADO, Producto::ACTIVADO])->default(Producto::DESACTIVADO);
 
-            $table->unsignedBigInteger('categoria_id');
+            $table->unsignedBigInteger('subcategoria_id');
+            $table->unsignedBigInteger('marca_id');
             $table->unsignedBigInteger('proveedor_id');
 
-            $table->foreign('categoria_id')->references('id')->on('categorias');
+            $table->foreign('subcategoria_id')->references('id')->on('subcategorias');
+            $table->foreign('marca_id')->references('id')->on('marcas');
             $table->foreign('proveedor_id')->references('id')->on('proveedors');
 
             $table->timestamps();

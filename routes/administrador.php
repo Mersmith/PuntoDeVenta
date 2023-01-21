@@ -13,6 +13,7 @@ use App\Http\Livewire\Administrador\Compra\CompraTodoLivewire;
 use App\Http\Livewire\Administrador\Empresa\EmpresaLivewire;
 use App\Http\Livewire\Administrador\Estadistica\EstadisticaLivewire;
 use App\Http\Livewire\Administrador\Impresora\ImpresoraLivewire;
+use App\Http\Livewire\Administrador\Marca\MarcaLivewire;
 use App\Http\Livewire\Administrador\Perfil\PerfilLivewire;
 use App\Http\Livewire\Administrador\Producto\ProductoCrearLivewire;
 use App\Http\Livewire\Administrador\Producto\ProductoEditarLivewire;
@@ -20,6 +21,8 @@ use App\Http\Livewire\Administrador\Producto\ProductoTodoLivewire;
 use App\Http\Livewire\Administrador\Proveedor\ProveedorLivewire;
 use App\Http\Livewire\Administrador\Reporte\CompraDiaLivewire;
 use App\Http\Livewire\Administrador\Reporte\CompraFechaLivewire;
+use App\Http\Livewire\Administrador\Subcategoria\SubcategoriaLivewire;
+use App\Http\Livewire\Administrador\Tag\TagLivewire;
 use Illuminate\Support\Facades\Route;
 
 Route::get('prueba-administrador', function () {
@@ -29,6 +32,12 @@ Route::get('prueba-administrador', function () {
 Route::get('perfil', PerfilLivewire::class)->name('perfil');
 
 Route::get('categorias', CategoriaLivewire::class)->name('categoria.index');
+
+Route::get('subcategoria/{categoria}', SubcategoriaLivewire::class)->name('subcategoria.index');
+
+Route::get('marcas', MarcaLivewire::class)->name('marca.index');
+
+Route::get('tags', TagLivewire::class)->name('tag.index');
 
 Route::get('proveedores', ProveedorLivewire::class)->name('proveedor.index');
 
@@ -55,4 +64,3 @@ Route::get('reportes/dia', CompraDiaLivewire::class)->name('reporte.dia');
 Route::get('reportes/fechas', CompraFechaLivewire::class)->name('reporte.fecha');
 
 Route::get('estadistica', EstadisticaLivewire::class)->name('estadistica.index');
-

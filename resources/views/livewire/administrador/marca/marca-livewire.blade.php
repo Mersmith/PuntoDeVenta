@@ -1,12 +1,12 @@
 <div>
     <!--SEO-->
-    @section('tituloPagina', 'Categorias')
+    @section('tituloPagina', 'Marcas')
 
     <!--TITULO-->
-    <h1>Categorias</h1>
+    <h1>Marcas</h1>
 
     <!--FORMULARIOS-->
-    <form wire:submit.prevent="crearCategoria">
+    <form wire:submit.prevent="crearMarca">
         <!--NOMBRE-->
         <div>
             <p>Nombre: </p>
@@ -34,25 +34,6 @@
             @enderror
         </div>
 
-        <!--MARCAS-->
-        <div>
-            <p>Marcas: </p>
-            @if ($marcas->count())
-                <div>
-                    @foreach ($marcas as $marca)
-                        <label>
-                            <input type="checkbox" name="marcas[]" wire:model.defer="crearFormulario.marcas"
-                                value="{{ $marca->id }}">
-                            <span> {{ $marca->nombre }}</span>
-                        </label>
-                    @endforeach
-                </div>
-                @error('crearFormulario.marcas')
-                    <span>{{ $message }}</span>
-                @enderror
-            @endif
-        </div>
-
         <!--IMAGEN-->
         <div>
             <p>Imagen: </p>
@@ -60,8 +41,7 @@
                 @if ($imagen)
                     <img style="width: 100px; height: 100px;" src="{{ $imagen->temporaryUrl() }}">
                 @else
-                    <img style="width: 100px; height: 100px;"
-                        src="{{ asset('imagenes/producto/sin_foto_producto.png') }}">
+                    <img style="width: 100px; height: 100px;" src="{{ asset('imagenes/producto/sin_foto_producto.png') }}">
                 @endif
                 <label for="imagen">
                     <div>
@@ -79,17 +59,17 @@
         </div>
         <br>
         <br>
-
+        
         <!--ENVIAR-->
         <div>
-            <input type="submit" value="Crear Categoria">
+            <input type="submit" value="Crear Marca">
         </div>
     </form>
 
 
-    @if ($categorias->count())
+    @if ($marcas->count())
         <!--SUBTITULO-->
-        <h1>Lista Categorias</h1>
+        <h1>Lista Marcas</h1>
 
         <!--TABLA-->
         <table>
@@ -108,36 +88,31 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($categorias as $categoriaItem)
+                @foreach ($marcas as $marcaItem)
                     <tr>
                         <td>
                             <div style="width: 20px; height: 20px;">
-                                @if ($categoriaItem->imagen)
-                                    <img src="{{ Storage::url($categoriaItem->imagen->imagen_ruta) }}" alt="" />
+                                @if ($marcaItem->imagen)
+                                    <img src="{{ Storage::url($marcaItem->imagen->imagen_ruta) }}" alt="" />
                                 @else
                                     <img src="{{ asset('imagenes/producto/sin_foto_producto.png') }}">
                                 @endif
                             </div>
                         </td>
                         <td>
-
-                            {{ $categoriaItem->nombre }}
+                            {{ $marcaItem->nombre }}
                         </td>
                         <td>
-                            {{ $categoriaItem->slug }}
+                            {{ $marcaItem->slug }}
                         </td>
                         <td>
-                            {{ Str::limit($categoriaItem->descripcion, 20) }}
+                            {{ Str::limit($marcaItem->descripcion, 20) }}
                         </td>
                         <td>
-                            <a href="{{ route('administrador.subcategoria.index', $categoriaItem) }}">
-                                <span><i class="fa-solid fa-eye" style="color: #009eff;"></i></span>
-                                Ver
-                            </a>
-                            <a wire:click="editarCategoria('{{ $categoriaItem->slug }}')">
+                            <a wire:click="editarMarca('{{ $marcaItem->slug }}')">
                                 <span><i class="fa-solid fa-pencil"></i></span>
                                 Editar</a> |
-                            <a wire:click="$emit('eliminarCategoriaModal', '{{ $categoriaItem->slug }}')">
+                            <a wire:click="$emit('eliminarMarcaModal', '{{ $marcaItem->slug }}')">
                                 <span><i class="fa-solid fa-trash"></i></span>
                                 Eliminar</a>
                         </td>
@@ -146,10 +121,10 @@
             </tbody>
         </table>
     @else
-        <p>No hay categorias.</p>
+        <p>No hay marcas.</p>
     @endif
 
-    @if ($categoria)
+    @if ($marca)
         <!--MODAL-->
         <x-jet-dialog-modal wire:model="editarFormulario.abierto">
             <!--TITULO-->
@@ -178,7 +153,7 @@
                             <img style="width: 100px; height: 100px;" src="{{ $editarImagen->temporaryUrl() }}">
                         @elseif($imagen)
                             <img style="width: 100px; height: 100px;"
-                                src="{{ Storage::url($categoria->imagen->imagen_ruta) }}">
+                                src="{{ Storage::url($marca->imagen->imagen_ruta) }}">
                             <div wire:click="$set('imagen', null)">
                                 Eliminar <i class="fa-solid fa-trash"></i>
                             </div>
@@ -204,7 +179,6 @@
                 <br>
                 <br>
                 <br>
-
                 <!--NOMBRE-->
                 <div>
                     <p>Nombre: </p>
@@ -232,33 +206,14 @@
                     @enderror
                 </div>
 
-                <!--MARCAS-->
-                <div>
-                    <p>Marcas: </p>
-                    @if ($marcas->count())
-                        <div>
-                            @foreach ($marcas as $marca)
-                                <label>
-                                    <input type="checkbox" name="marcas[]" wire:model.defer="editarFormulario.marcas"
-                                        value="{{ $marca->id }}">
-                                    <span> {{ $marca->nombre }}</span>
-                                </label>
-                            @endforeach
-                        </div>
-                        @error('editarFormulario.marcas')
-                            <span>{{ $message }}</span>
-                        @enderror
-                    @endif
-                </div>
-
             </x-slot>
             <x-slot name="footer">
                 <div class="contenedor_pie_modal">
                     <button wire:click="$set('editarFormulario.abierto', false)" wire:loading.attr="disabled"
                         type="submit">Cancelar</button>
 
-                    <button wire:click="actualizarCategoria" wire:loading.attr="disabled"
-                        wire:target="actualizarCategoria" type="submit">Editar</button>
+                    <button wire:click="actualizarMarca" wire:loading.attr="disabled" wire:target="actualizarMarca"
+                        type="submit">Editar</button>
                 </div>
             </x-slot>
         </x-jet-dialog-modal>
@@ -268,7 +223,7 @@
 <!--SCRIPT-->
 @push('script')
     <script>
-        Livewire.on('eliminarCategoriaModal', categoriaId => {
+        Livewire.on('eliminarMarcaModal', marcaId => {
             Swal.fire({
                 title: '¿Quieres eliminar?',
                 text: "No podrás recuparlo.",
@@ -280,8 +235,8 @@
                 cancelButtonText: 'Cancelar'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    Livewire.emitTo('administrador.categoria.categoria-livewire',
-                        'eliminarCategoria', categoriaId);
+                    Livewire.emitTo('administrador.marca.marca-livewire',
+                        'eliminarMarca', marcaId);
                     Swal.fire(
                         '¡Eliminado!',
                         'Eliminaste correctamente.',

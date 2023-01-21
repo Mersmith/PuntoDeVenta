@@ -386,3 +386,49 @@ git push origin 17_Perfil_Cliente_Administrador
 ->Click en boton Merge pull request
 
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+->Modelo y Migración Subcategoria
+php artisan make:model Subcategoria -m
+
+->Modelo y Migración Marca
+php artisan make:model Marca -m
+
+->Migración CategoriaMarca
+php artisan make:migration create_categoria_marca_table
+
+->Modelo y Migración Tag
+php artisan make:model Tag -m
+
+->Migración ProductoTag
+php artisan make:migration create_producto_tag_table
+
+->Seeder UserSeeder
+php artisan make:seeder UserSeeder
+
+php artisan migrate:fresh --seed
+
+->Factory AdministradorFactory
+php artisan make:factory AdministradorFactory
+
+->Factory ClienteFactory
+php artisan make:factory ClienteFactory
+
+->CRUD CATEGORIA
+php artisan make:livewire Administrador/Marca/MarcaLivewire
+
+php artisan make:livewire Administrador/Tag/TagLivewire
+
+php artisan make:livewire Administrador/Subcategoria/SubcategoriaLivewire
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+git checkout -b 18_SubCategoria_Tag
+git branch
+git status
+
+git add .
+git commit -m "SubCategoria, Tag, Crud producto"
+git push origin 18_SubCategoria_Tag
+->Click en boton Merge pull request
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

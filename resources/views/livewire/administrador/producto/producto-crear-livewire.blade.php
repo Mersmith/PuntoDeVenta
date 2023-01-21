@@ -40,6 +40,65 @@
             @enderror
         </div>
 
+        <!--SUBCATEGORIAS-->
+        <div>
+            <p>Subcategorias: </p>
+            <select wire:model="subcategoria_id">
+                <option value="" selected disabled>Seleccione una subcategoría</option>
+                @foreach ($subcategorias as $subcategoria)
+                    <option value="{{ $subcategoria->id }}">{{ $subcategoria->nombre }}</option>
+                @endforeach
+            </select>
+            @if ($subcategoria_id)
+                <!--Propiedad computada-->
+                @if ($this->subcategoria->tiene_color && !$this->subcategoria->tiene_medida)
+                    <code>El producto varia en Color</code>
+                @elseif(!$this->subcategoria->tiene_color && $this->subcategoria->tiene_medida)
+                    <code>El producto varia en Medida</code>
+                @elseif($this->subcategoria->tiene_color && $this->subcategoria->tiene_medida)
+                    <code>El producto varia en Color y Medida</code>
+                @else
+                    <code>El producto No tiene Variación</code>
+                @endif
+            @endif
+            @error('subcategoria_id')
+                <span>{{ $message }}</span>
+            @enderror
+        </div>
+
+        <!--MARCAS-->
+        <div>
+            <p>Marca: </p>
+            <select wire:model="marca_id">
+                <option value="" selected disabled>Seleccione una marca</option>
+                @foreach ($marcas as $marca)
+                    <option value="{{ $marca->id }}">{{ $marca->nombre }}</option>
+                @endforeach
+            </select>
+            @error('marca_id')
+                <span>{{ $message }}</span>
+            @enderror
+        </div>
+
+        <!--TAGS-->
+        <div>
+            <p>Tags: </p>
+            @if ($tagsDb->count())
+                <div>
+                    @foreach ($tagsDb as $tagsDbItem)
+                        <label>
+                            <input type="checkbox" name="tags[]" wire:model.defer="tags"
+                                value="{{ $tagsDbItem->id }}">
+                            <span> {{ $tagsDbItem->nombre }}</span>
+                        </label>
+                    @endforeach
+                </div>
+                @error('tags')
+                    <span>{{ $message }}</span>
+                @enderror
+            @endif
+        </div>
+
         <!--NOMBRE-->
         <div>
             <p>Nombre: </p>
@@ -242,7 +301,7 @@
             <div style="width: 100px; height: 100px;">
                 <img style="width: 100px; height: 100px;" src="{{ asset('imagenes/producto/sin_foto_producto.png') }}">
                 <div>
-                    <label  for="imagenes">
+                    <label for="imagenes">
 
                         Subir <i class="fa-solid fa-camera"></i>
 
@@ -295,6 +354,22 @@
                     console.log(evt.oldIndex);
                 },
             }
+        });
+
+        $(document).ready(function() {
+            $('.select_categorias_producto').select2();
+        });
+
+        $(document).ready(function() {
+            $('.select_subcategorias_producto').select2();
+        });
+
+        $(document).ready(function() {
+            $('.select_proveedores_producto').select2();
+        });
+
+        $(document).ready(function() {
+            $('.select_tags_producto').select2();
         });
     </script>
 @endpush

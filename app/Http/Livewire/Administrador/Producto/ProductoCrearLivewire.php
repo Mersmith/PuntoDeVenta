@@ -3,12 +3,16 @@
 namespace App\Http\Livewire\Administrador\Producto;
 
 use App\Models\Categoria;
+use App\Models\Marca;
 use App\Models\Producto;
 use App\Models\Proveedor;
+use App\Models\Subcategoria;
+use App\Models\Tag;
 use Livewire\Component;
 use Illuminate\Support\Str;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Contracts\Database\Eloquent\Builder;
 
 class ProductoCrearLivewire extends Component
 {
@@ -16,9 +20,11 @@ class ProductoCrearLivewire extends Component
 
     protected $listeners = ['cambiarPosicionImagenes'];
 
-    public $categorias, $proveedores, $imagenes = [];
+    public $categorias, $subcategorias = [], $marcas = [], $proveedores, $tagsDb;
+    
+    public $imagenes = [];
 
-    public $categoria_id = "",  $proveedor_id = "";
+    public $categoria_id = "", $subcategoria_id = "", $proveedor_id = "", $marca_id = "";
 
     public
         $nombre = null,
@@ -34,10 +40,13 @@ class ProductoCrearLivewire extends Component
         $incluye_igv = false,
         $tiene_detalle = false,
         $detalle = null,
-        $estado = 1;
+        $estado = 1,
+        $tags = [];
 
     protected $rules = [
         'categoria_id' => 'required',
+        'subcategoria_id' => 'required',
+        'marca_id' => 'required',
         'proveedor_id' => 'required',
         'nombre' => 'required',
         'slug' => 'required|unique:productos',
@@ -56,6 +65,8 @@ class ProductoCrearLivewire extends Component
 
     protected $validationAttributes = [
         'categoria_id' => 'categoria',
+        'subcategoria_id' => 'subcategoria',
+        'marca_id' => 'marca',
         'proveedor_id' => 'proveedor',
         'nombre' => 'nombre',
         'slug' => 'slug',
@@ -97,7 +108,19 @@ class ProductoCrearLivewire extends Component
     public function mount()
     {
         $this->categorias = Categoria::all();
+        $this->tagsDb = Tag::all();
         $this->proveedores = Proveedor::all();
+    }
+
+    public function updatedCategoriaId($value)
+    {
+        $this->subcategorias = Subcategoria::where('categoria_id', $value)->get();
+
+        $this->marcas = Marca::whereHas('categorias', function (Builder $query) use ($value) {
+            $query->where('categoria_id', $value);
+        })->get();
+
+        $this->reset(['subcategoria_id', 'marca_id']);
     }
 
     public function updatedNombre($value)
@@ -109,6 +132,11 @@ class ProductoCrearLivewire extends Component
     public function updatedPrecioReal($value)
     {
         $this->precio_venta = $value;
+    }
+
+    public function getSubcategoriaProperty()
+    {
+        return Subcategoria::find($this->subcategoria_id);
     }
 
     public function eliminarImagen($index)
@@ -132,6 +160,12 @@ class ProductoCrearLivewire extends Component
     {
         $rules = $this->rules;
 
+        if ($this->subcategoria_id) {
+            if (!$this->subcategoria->tiene_color && !$this->subcategoria->medida) {
+                $rules['stock_total'] = 'required';
+            }
+        }
+
         if ($this->tiene_detalle) {
             $rules['detalle'] = 'required';
         } else {
@@ -148,7 +182,8 @@ class ProductoCrearLivewire extends Component
 
         $producto = new Producto();
 
-        $producto->categoria_id  = $this->categoria_id;
+        $producto->subcategoria_id  = $this->subcategoria_id;
+        $producto->marca_id  = $this->marca_id;
         $producto->proveedor_id  = $this->proveedor_id;
         $producto->nombre = $this->nombre;
         $producto->slug = $this->slug;
@@ -163,9 +198,17 @@ class ProductoCrearLivewire extends Component
         $producto->incluye_igv = $this->incluye_igv;
         $producto->tiene_detalle = $this->tiene_detalle;
         $producto->detalle = $this->detalle;
-        $producto->estado  = $this->estado;
+        $producto->estado  = $this->estado;    
+        
+        if ($this->subcategoria_id) {
+            if (!$this->subcategoria->tiene_color && !$this->subcategoria->tiene_medida) {
+                $producto->stock_total = $this->stock_total;
+            }
+        }
 
         $producto->save();
+        
+        $producto->tags()->attach($this->tags);
 
         foreach ($this->imagenes as $key => $imagen) {
             $urlImagen = Storage::put('productos', $imagen);

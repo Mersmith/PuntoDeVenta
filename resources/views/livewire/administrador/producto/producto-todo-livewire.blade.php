@@ -61,7 +61,7 @@
                             {{ $producto->slug }}
                         </td>
                         <td>
-                            {{ $producto->categoria->nombre }}
+                            {{ $producto->subcategoria->categoria->nombre}}
                         </td>
                         <td>
                             @switch($producto->estado)
